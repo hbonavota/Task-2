@@ -10,11 +10,11 @@ const inputs = [
     "formItem-42487","#formItem-42488","#formItem-42489","#formItem-42490","#formItem-42491",
     "#formInput-42488","#formInput-42489","#formInput-42490","#formInput-42491"
   ]
-    const hideAll = () => {
-        inputs.map((elem) => $(elem).children().hide());
-    }
+const hideAll = () => {
+  inputs.map((elem) => $(elem).children().hide());
+}
 
-  CDTA.loaded = function() {
+CDTA.loaded = function() {
   //hide "show more products" 
   $(".cdta_add_more").hide();
 
@@ -41,20 +41,20 @@ const inputs = [
     hideAll();
 
     if (total_asistants > 1) {
-    //show 2
+      //show 2
       for (let i = 0; i <=7 ; i++) {
         $(inputs[i]).children().show()
       }
     }
     if (total_asistants > 2) {
-    //show 3
-    for (let i = 8; i <=15 ; i++) {
+      //show 3
+      for (let i = 8; i <=15 ; i++) {
         $(inputs[i]).children().show()
       }
     }
     if (total_asistants > 3) {
-    //show 4
-    for (let i = 16; i <=24 ; i++) {
+      //show 4
+      for (let i = 16; i <=24 ; i++) {
         $(inputs[i]).children().show()
       }
     }
