@@ -18,7 +18,7 @@ CDTA.loaded = function() {
   //hide "show more products" 
   $(".cdta_add_more").hide();
 
-  CDTA.app.basket_count.subscribe( async function(new_count) {
+  CDTA.app.basket_count.subscribe(function(new_count) {
     let total_asistants = CDTA.app.basket_count();
     if (total_asistants!=0) {
       let total_type = CDTA.app.basket().length;
