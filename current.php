@@ -14,6 +14,7 @@ const hideAll = () => {
   inputs.map((elem) => $(elem).children().hide());
 }
 
+
 CDTA.loaded = function() {
   //hide "show more products" 
   $(".cdta_add_more").hide();
@@ -58,6 +59,38 @@ CDTA.loaded = function() {
         $(inputs[i]).children().show()
       }
     }
+
+    const validate = () => {
+      
+      let firstName = $(inputs[5]).val()
+      let lastName = $(inputs[6]).val()
+      
+      if (total_asistants > 1 && (!firstName || !lastName)) {
+        const warningMessage = (alert("* Es obligatorio rellenar todos los datos validos de los asistentes"));
+        return warningMessage();
+      }
+
+      if (total_asistants > 2 ) {
+        let firstName = $(inputs[13]).val()
+        let lastName = $(inputs[14]).val()
+        if(!firstName || !lastName || firstName?.length < 3 || lastName?.length < 3) {
+          return warningMessage();
+        }
+      }
+
+      if (total_asistants > 3) {
+        let firstName = $(inputs[22]).val()
+        let lastName = $(inputs[23]).val()
+        if(!firstName || !lastName || firstName?.length < 3 || lastName?.length < 3) {
+          return warningMessage();
+        }
+      }
+
+    }
+
+    $("#formInput-42500").click(function() {
+      validate();
+    });
   });
 }
 
