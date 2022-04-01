@@ -12,6 +12,22 @@ const inputs = [
   ]
 const hideAll = () => {
   inputs.map((elem) => $(elem).children().hide());
+  
+  CDTA.core.get_element_by_id(42479).item_visible(false)
+  CDTA.core.get_element_by_id(42480).item_visible(false)
+  CDTA.core.get_element_by_id(42484).item_visible(false)
+  CDTA.core.get_element_by_id(42485).item_visible(false)
+  CDTA.core.get_element_by_id(42489).item_visible(false)
+  CDTA.core.get_element_by_id(42490).item_visible(false)
+
+
+  CDTA.core.get_element_by_id(42479).item_required(false)
+  CDTA.core.get_element_by_id(42480).item_required(false)
+  CDTA.core.get_element_by_id(42484).item_required(false)
+  CDTA.core.get_element_by_id(42485).item_required(false)
+  CDTA.core.get_element_by_id(42489).item_required(false)
+  CDTA.core.get_element_by_id(42490).item_required(false)
+
 }
 
 
@@ -24,8 +40,8 @@ CDTA.loaded = function() {
     if (total_asistants!=0) {
       let total_type = CDTA.app.basket().length;
       let type_ticket =  CDTA.app.basket()[0].basket_str;
-      $("#formInput-39692").val(total_asistants);
-      $("#formInput-39693").val(type_ticket);
+      $("#formInput-42493").val(total_asistants);
+      $("#formInput-42494").val(type_ticket)
 
       //if have more types delete it
       if (total_type>1) {
@@ -39,6 +55,13 @@ CDTA.loaded = function() {
       $(".cdta_add_more").hide();
     }
       //hide all components, tags and input 2.3.4
+
+    if (total_asistants > 4) {
+      alert("La cantidad máxima por compra es de 4 unidades. Por favor ingrese un número valido")
+      CDTA.app.basket.removeAll();
+        location.reload();
+    }    
+
     hideAll();
 
     if (total_asistants > 1) {
@@ -46,51 +69,32 @@ CDTA.loaded = function() {
       for (let i = 0; i <=7 ; i++) {
         $(inputs[i]).children().show()
       }
+      CDTA.core.get_element_by_id(42479).item_visible(true)
+      CDTA.core.get_element_by_id(42480).item_visible(true)
+      CDTA.core.get_element_by_id(42479).item_required(true)
+      CDTA.core.get_element_by_id(42480).item_required(true)
     }
     if (total_asistants > 2) {
       //show 3
       for (let i = 8; i <=15 ; i++) {
         $(inputs[i]).children().show()
       }
+      CDTA.core.get_element_by_id(42484).item_visible(true)
+      CDTA.core.get_element_by_id(42485).item_visible(true)
+      CDTA.core.get_element_by_id(42484).item_required(true)
+      CDTA.core.get_element_by_id(42485).item_required(true)
     }
     if (total_asistants > 3) {
       //show 4
       for (let i = 16; i <=24 ; i++) {
         $(inputs[i]).children().show()
       }
+      CDTA.core.get_element_by_id(42489).item_visible(true)
+      CDTA.core.get_element_by_id(42490).item_visible(true)
+      CDTA.core.get_element_by_id(42489).item_required(true)
+      CDTA.core.get_element_by_id(42490).item_required(true)
     }
 
-    const validate = () => {
-      
-      let firstName = $(inputs[5]).val()
-      let lastName = $(inputs[6]).val()
-      
-      if (total_asistants > 1 && (!firstName || !lastName)) {
-        const warningMessage = (alert("* Es obligatorio rellenar todos los datos validos de los asistentes"));
-        return warningMessage();
-      }
-
-      if (total_asistants > 2 ) {
-        let firstName = $(inputs[13]).val()
-        let lastName = $(inputs[14]).val()
-        if(!firstName || !lastName || firstName?.length < 3 || lastName?.length < 3) {
-          return warningMessage();
-        }
-      }
-
-      if (total_asistants > 3) {
-        let firstName = $(inputs[22]).val()
-        let lastName = $(inputs[23]).val()
-        if(!firstName || !lastName || firstName?.length < 3 || lastName?.length < 3) {
-          return warningMessage();
-        }
-      }
-
-    }
-
-    $("#formInput-42500").click(function() {
-      validate();
-    });
   });
 }
 
